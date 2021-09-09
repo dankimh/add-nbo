@@ -11,15 +11,8 @@ uint32_t f(char *a){
 		exit(1);
 	}
 
-	fseek(fp,0,SEEK_END);
-	long sz=ftell(fp);
-	rewind(fp);
-
-	uint8_t buffer[sz];
-
-	size_t res=fread(buffer,sizeof(uint8_t),sz,fp);
-	
-	uint32_t *ret=reinterpret_cast<uint32_t*>(buffer);
+	uint32_t *ret,sz=1;
+	size_t res=fread(ret,sizeof(uint32_t),sz,fp);
 
 	return ntohl(*ret);
 }
